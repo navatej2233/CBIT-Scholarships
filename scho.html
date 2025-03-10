@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBIT Scholarships</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #4caf50;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+    nav ul li {
+      margin-right: 15px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      padding: 100px 20px 20px 20px; /* Adjust for sticky header */
+    }
+    .scholarship-category {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .scholarship-item {
+      background-color: white;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .scholarship-item:hover {
+      background-color: #f4f4f4;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .scholarship-details {
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .apply-button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .apply-button:hover {
+      background-color: #45a049;
+    }
+    .testimonial-section {
+      margin-top: 40px;
+      background-color: #e9f7e9;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .testimonial-item {
+      background-color: white;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .testimonial-item p {
+      font-style: italic;
+    }
+    .newsletter {
+      margin-top: 40px;
+      background-color: #4caf50;
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .newsletter input[type="email"] {
+      padding: 10px;
+      width: 70%;
+      margin-right: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+    .newsletter button {
+      padding: 10px 20px;
+      background-color: #45a049;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .newsletter button:hover {
+      background-color: #4caf50;
+    }
+    @media (max-width: 768px) {
+      .scholarship-category {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .scholarship-category {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <script>
+    function showScholarshipDetails(type) {
+      const scholarshipDetails = {
+        'Merit-Based': {
+          description: 'This scholarship is awarded based on academic performance.',
+          requirements: ['Minimum 90% in board exams', 'Consistent academic excellence'],
+          link: '#apply-merit-based'
+        },
+        'Government-Based': {
+          description: 'Scholarships provided by government organizations.',
+          requirements: ['Income certificate', 'Valid caste certificate for category-based scholarships'],
+          link: '#apply-government-based'
+        },
+        'Sports-Based': {
+          description: 'Scholarships for students with outstanding sports achievements.',
+          requirements: ['State or national-level participation certificate', 'Minimum academic performance'],
+          link: '#apply-sports-based'
+        }
+      };
+
+      const detailsSection = document.getElementById('scholarship-details');
+      const details = scholarshipDetails[type];
+
+      detailsSection.innerHTML = `
+        <h2>${type} Scholarship</h2>
+        <p>${details.description}</p>
+        <h3>Basic Requirements:</h3>
+        <ul>
+          ${details.requirements.map(req => `<li>${req}</li>`).join('')}
+        </ul>
+        <a href="${details.link}" class="apply-button">Apply Now</a>
+      `;
+    }
+
+    // Function to handle newsletter form submission
+    function handleNewsletter() {
+      const email = document.getElementById("newsletter-email").value;
+      alert(`Thank you for subscribing with ${email}`);
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="cbit_logo.png" alt="CBIT Logo" style="height: 50px; vertical-align: middle;">
+      CBIT Scholarships
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#scholarships">Scholarships</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container" id="home">
+    <h1>Welcome to CBIT Scholarships Portal</h1>
+    <p>Select a scholarship category to view more details and apply:</p>
+
+    <div class="scholarship-category" id="scholarships">
+      <div class="scholarship-item" onclick="showScholarshipDetails('Merit-Based')">Merit-Based Scholarship</div>
+      <div class="scholarship-item" onclick="showScholarshipDetails('Government-Based')">Government-Based Scholarship</div>
+      <div class="scholarship-item" onclick="showScholarshipDetails('Sports-Based')">Sports-Based Scholarship</div>
+    </div>
+
+    <div id="scholarship-details" class="scholarship-details"></div>
+
+    <div class="testimonial-section">
+      <h2>Student Testimonials</h2>
+      <div class="testimonial-item">
+        <p>"The Merit-Based Scholarship helped me continue my studies at CBIT. It was an incredible support for my academic journey!"</p>
+        <small>- Priya, Merit-Based Scholarship Recipient</small>
+      </div>
+      <div class="testimonial-item">
+        <p>"Thanks to the Government-Based Scholarship, I was able to pursue my engineering dreams without financial stress."</p>
+        <small>- Ravi, Government-Based Scholarship Recipient</small>
+      </div>
+    </div>
+
+    <div class="newsletter">
+      <h2>Subscribe to our Newsletter</h2>
+      <p>Stay updated with the latest scholarship announcements.</p>
+      <input type="email" id="newsletter-email" placeholder="Enter your email">
+      <button onclick="handleNewsletter()">Subscribe</button>
+    </div>
+  </div>
+
+  <div class="container" id="about">
+    <h2>About CBIT Scholarships</h2>
+    <p>At CBIT, we believe in making quality education accessible to all. Our scholarship programs aim to support meritorious, deserving students who have the potential to excel in their academic and extracurricular pursuits.</p>
+  </div>
+
+  <div class="container" id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions, feel free to reach out to us:</p>
+    <p>Email: <a href="mailto:support@cbit.edu">support@cbit.edu</a></p>
+    <p>Phone: +91 123 456 7890</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 CBIT Scholarships | Osman Sagar Rd, Kokapet, Gandipet, Hyderabad, Telangana 500075</p>
+  </footer>
+</body>
+</html>
+
